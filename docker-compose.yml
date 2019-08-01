@@ -274,6 +274,7 @@ services:
           - http_proxy
           - https_proxy
           - no_proxy
+          - TZ=${WORKSPACE_TIMEZONE}
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
         - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
@@ -349,6 +350,21 @@ services:
         - frontend
         - backend
 
+### hbase ################################################
+    hbase:
+      image: dajobe/hbase
+      volumes:
+        - ${DATA_PATH_HOST}/hbase:/data
+      ports:
+        - 16010:16010
+        - 2181:2181
+        - 8080:8080
+        - 8085:8085
+        - 9090:9090
+        - 9095:9095
+      networks:
+        - backend
+
 ### MySQL ################################################
     mysql:
       build:
@@ -362,6 +378,7 @@ services:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - TZ=${WORKSPACE_TIMEZONE}
       volumes:
+        - /Users/xstoop/Downloads:/var/tmp/dump
         - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       ports:

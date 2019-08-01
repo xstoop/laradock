@@ -4,6 +4,14 @@ LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 
 COPY nginx.conf /etc/nginx/
 
+#####################################
+# Set Timezone
+#####################################
+
+ARG TZ=UTC
+ENV TZ ${TZ}
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
 
 ARG CHANGE_SOURCE=false

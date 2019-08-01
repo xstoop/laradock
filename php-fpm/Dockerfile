@@ -85,6 +85,16 @@ ARG INSTALL_FAKETIME=false
 
 RUN if [ ${INSTALL_FAKETIME} = true ]; then \
     apt-get install -y libfaketime \
+    
+###########################################################################
+# SOCKET:
+###########################################################################
+
+ARG INSTALL_SOCKET=true
+
+RUN if [ ${INSTALL_SOCKET} = true ]; then \ 
+    # Install the sockets extension
+    docker-php-ext-install sockets \ 
 ;fi
 
 ###########################################################################
