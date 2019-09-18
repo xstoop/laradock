@@ -14,8 +14,7 @@
 
 ARG LARADOCK_PHP_VERSION
 
-# FROM laradock/workspace:2.2-${LARADOCK_PHP_VERSION}
-FROM letsdockerize/laradock-workspace:2.4-${LARADOCK_PHP_VERSION}
+FROM laradock/workspace:2.5-${LARADOCK_PHP_VERSION}
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 
@@ -444,6 +443,7 @@ RUN if [ ${INSTALL_CASSANDRA} = true ]; then \
 ARG INSTALL_PHPREDIS=false
 
 RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
+    apt-get update -yqq && \
     apt-get install -yqq php-redis \
 ;fi
 
