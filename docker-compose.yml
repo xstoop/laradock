@@ -52,6 +52,7 @@ services:
 
 ### Workspace Utilities ##################################
     workspace:
+      #image: laradock_workspace:php7.2
       build:
         context: ./workspace
         args:

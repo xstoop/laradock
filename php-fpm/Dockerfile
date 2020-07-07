@@ -90,7 +90,8 @@ ARG INSTALL_FAKETIME=false
 
 RUN if [ ${INSTALL_FAKETIME} = true ]; then \
     apt-get install -y libfaketime \
-    
+;fi
+
 ###########################################################################
 # SOCKET:
 ###########################################################################
